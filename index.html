@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Exam Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="topbar">
+        <h2>Online Exam</h2>
+        <div id="timer">15:00</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="sidebar" id="question-nav">
+            <button class="btn">5</button>
+        </div>
+
+        <div class="main">
+            <h3 id="question"></h3>
+            <div id="options"></div>
+            <button id="submit-btn" onclick="submit()">Submit Exam</button>
+        </div>
+    </div>  
+
+    <script src="script.js"></script>
+</body>
+</html>
