@@ -15,7 +15,7 @@ const questions = [
         correct: 3
     },
     {
-        question: "Which is a JavaScript framework?",
+        question: "Look it's a JEE physics question",
         options: ["Django", "React", "Flask", "Laravel"],
         correct: 1
     },
