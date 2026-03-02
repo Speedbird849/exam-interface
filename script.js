@@ -33,10 +33,12 @@ const questions = [
 
 let cur = 0;
 let answers = [];
+let marked = [];
 let timeLeft = 15*60;
 
 for (let i = 0; i < questions.length; i++) {
     answers[i] = null;
+    marked[i] = null;
 }
 
 function sidebar() {
@@ -64,10 +66,15 @@ function colour() {
     let buttons = document.getElementsByClassName("btn");
 
     for (let i = 0; i < questions.length; i++) {
-        if (answers[i] != null) {
+        if (answers[i] != null && marked[i] == null) {
             buttons[i].style.borderColor = "#34a15f";
-        } else {
+            buttons[i].style.backgroundColor = "#263029";
+        } else if (marked[i] == null) {
             buttons[i].style.backgroundColor = "#2c2c2c";
+            buttons[i].style.borderColor = "#2c2c2c";
+        } else {
+            buttons[i].style.borderColor = "#beac5f";
+            buttons[i].style.backgroundColor = "#31302a";
         }
     }
 }
@@ -105,6 +112,9 @@ function load(index) {
     if (index == questions.length - 1) {
         document.getElementById("next-btn").style.visibility = "hidden";
     }
+
+    if (marked[cur] == 1) document.getElementById("mark-btn").innerHTML = "Marked";
+    else document.getElementById("mark-btn").innerHTML = "Mark";
 }
 
 function select(qIndex, opIndex) {
@@ -112,6 +122,17 @@ function select(qIndex, opIndex) {
     load(qIndex);
     colour();
     document.getElementById("next-btn").style.backgroundColor = "#6b6be0";
+}
+
+function mark() {
+    if (marked[cur] == null) {
+        marked[cur] = 1;
+        document.getElementById("mark-btn").innerHTML = "Marked";
+    } else {
+        marked[cur] = null;
+        document.getElementById("mark-btn").innerHTML = "Mark";
+    }
+    colour();
 }
 
 function next() {

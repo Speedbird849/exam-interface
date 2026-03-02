@@ -96,9 +96,24 @@ body {
     border: 2px solid #6b6be0;
 }
 
+#mark-btn {
+    float: right;
+    margin-top: 25px;
+    padding: 14px 24px;
+    background-color: #beac5f;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    transition: background-color 0.2s;
+}
+
 #submit-btn {
     float: right;
     margin-right: 1%;
+    margin-left: 1%;
     margin-top: 25px;
     padding: 14px 24px;
     background-color: #40c274;
@@ -117,6 +132,7 @@ body {
 
 #next-btn {
     margin-top: 25px;
+    margin-right: 1%;
     padding: 14px 24px;
     background-color: #bcbcbc;
     border: none;
