@@ -13,19 +13,24 @@
     </div>
 
     <div class="container">
-        
-        <div class="sidebar" id="question-nav">
-            <button class="btn">5</button>
-        </div>
-
         <div class="main">
             <h3 id="question"></h3>
             <img id="img">
-            <br><br><br>
+            <div id="img-br"></div>
             <div id="options"></div>
-            <button id="submit-btn" onclick="submit()">Submit Exam</button>
+            <div id="buttons">
+                <button id="prev-btn" onclick="prev()">Previous</button>
+                <button id="next-btn" onclick="next()">Next</button>
+                <button id="submit-btn" onclick="submit()">Submit Exam</button>
+            </div>
+        </div>
+
+        <div class="sidebar" id="question-nav">
+            <button class="btn">5</button>
         </div>
     </div>  
+
+    
 
     <script src="script.js"></script>
 </body>

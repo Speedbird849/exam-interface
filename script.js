@@ -48,6 +48,7 @@ function sidebar() {
         btn.className = "btn";
         btn.innerHTML = (i + 1);
         btn.setAttribute("onclick", "goTo(" + i + ")");
+        btn.style.border = "2px solid #2c2c2c";
         nav.appendChild(btn);
     }
 
@@ -64,7 +65,7 @@ function colour() {
 
     for (let i = 0; i < questions.length; i++) {
         if (answers[i] != null) {
-            buttons[i].style.backgroundColor = "#34a15f";
+            buttons[i].style.borderColor = "#34a15f";
         } else {
             buttons[i].style.backgroundColor = "#2c2c2c";
         }
@@ -77,8 +78,9 @@ function load(index) {
 
     if (index == 3) {
         document.getElementById("img").setAttribute("src", "images.png");
+        document.getElementById("img-br").innerHTML = "<br><br>";
     } else {
-        document.getElementById("img").setAttribute("src", "    ");
+        document.getElementById("img").setAttribute("src", "");
     }
 
     let op = document.getElementById("options");
@@ -95,6 +97,13 @@ function load(index) {
 
         btn.setAttribute("onclick", "select(" + index + "," + i + ")");
         op.appendChild(btn);
+        document.getElementById("next-btn").style.backgroundColor = "#bcbcbc";
+    }
+
+    document.getElementById("next-btn").style.visibility = "";
+
+    if (index == questions.length - 1) {
+        document.getElementById("next-btn").style.visibility = "hidden";
     }
 }
 
@@ -102,6 +111,15 @@ function select(qIndex, opIndex) {
     answers[qIndex] = opIndex;
     load(qIndex);
     colour();
+    document.getElementById("next-btn").style.backgroundColor = "#6b6be0";
+}
+
+function next() {
+    goTo(cur + 1);
+}
+
+function prev() {
+    goTo(cur - 1);
 }
 
 function submit() {
