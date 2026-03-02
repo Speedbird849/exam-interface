@@ -69,12 +69,15 @@ function colour() {
         if (answers[i] != null && marked[i] == null) {
             buttons[i].style.borderColor = "#34a15f";
             buttons[i].style.backgroundColor = "#263029";
-        } else if (marked[i] == null) {
-            buttons[i].style.backgroundColor = "#2c2c2c";
-            buttons[i].style.borderColor = "#2c2c2c";
-        } else {
+        } else if (answers[i] == null && marked[i] != null) {
             buttons[i].style.borderColor = "#beac5f";
             buttons[i].style.backgroundColor = "#31302a";
+        } else if (answers[i] != null && marked[i] != null) {
+            buttons[i].style.borderColor = "#9a5fbe";
+            buttons[i].style.backgroundColor = "#2b2631";
+        } else {
+            buttons[i].style.backgroundColor = "#2c2c2c";
+            buttons[i].style.borderColor = "#2c2c2c";
         }
     }
 }
