@@ -75,6 +75,12 @@ function load(index) {
     let q = questions[index];
     document.getElementById("question").innerHTML = q.question;
 
+    if (index == 3) {
+        document.getElementById("img").setAttribute("src", "images.png");
+    } else {
+        document.getElementById("img").setAttribute("src", "    ");
+    }
+
     let op = document.getElementById("options");
     op.innerHTML = "";
 
