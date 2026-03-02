@@ -115,6 +115,8 @@ function load(index) {
 
     if (marked[cur] == 1) document.getElementById("mark-btn").innerHTML = "Marked";
     else document.getElementById("mark-btn").innerHTML = "Mark";
+
+    if (answers[cur]) document.getElementById("next-btn").style.backgroundColor = "#6b6be0";
 }
 
 function select(qIndex, opIndex) {
