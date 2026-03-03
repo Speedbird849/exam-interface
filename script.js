@@ -1,45 +1,101 @@
-const questions = [
+const math = [
     {
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
+        question: "If the sum of the first n terms of an AP is given by Sₙ = 3n² + 5n, then the common difference of the AP is:",
+        options: ["6", "3", "5", "2"],
+        correct: 0
+    },
+    {
+        question: "The value of the integral ∫₀^π x·sin(x) dx is:",
+        options: ["π", "2π", "π/2", "0"],
+        correct: 0
+    },
+    {
+        question: "If |z − 2 + 2i| ≤ 1, then the maximum value of |z| is:",
+        options: ["√2 + 1", "2√2 + 1", "2√2 − 1", "3"],
         correct: 1
     },
     {
-        question: "Capital of France?",
-        options: ["London", "Berlin", "Paris", "Rome"],
-        correct: 2
+        question: "The number of ways of distributing 8 identical balls into 3 distinct boxes such that no box is empty is:",
+        options: ["21", "56", "24", "12"],
+        correct: 0
     },
     {
-        question: "Which language runs in the browser?",
-        options: ["Python", "Java", "C++", "JavaScript"],
-        correct: 3
-    },
-    {
-        question: "Look it's a JEE physics question",
-        options: ["Django", "React", "Flask", "Laravel"],
+        question: "For square matrices A and B of order 3, adj(AB) equals:",
+        options: ["adj(A) · adj(B)", "adj(B) · adj(A)", "|A| · adj(B)", "|B| · adj(A)"],
         correct: 1
     },
     {
-        question: "What does CSS stand for?",
-        options: ["Central Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Creative Style System"],
-        correct: 1
-    },
-    {
-        question: "Which is a JavaScript framework?",
-        options: ["Django", "React", "Flask", "Laravel"],
-        correct: 1
+        question: "The equation of the tangent to the curve y = x³ − 3x at the point where x = 2 is:",
+        options: ["y = 9x − 16", "y = 9x + 16", "y = 3x − 4", "y = 6x − 10"],
+        correct: 0
     }
 ];
 
-let cur = 0;
-let answers = [];
-let marked = [];
-let timeLeft = 15*60;
+const phy = [
+    {
+        question: "A particle starts with initial velocity 5 m/s and uniform acceleration 2 m/s². The distance covered in the 5th second is:",
+        options: ["12 m", "14 m", "16 m", "10 m"],
+        correct: 1
+    },
+    {
+        question: "A ball is projected vertically upward with velocity 20 m/s. The maximum height reached is (g = 10 m/s²):",
+        options: ["10 m", "15 m", "20 m", "25 m"],
+        correct: 2
+    },
+    {
+        question: "Resistances of 4 Ω and 6 Ω are connected in parallel and a current of 5 A flows through the combination. The voltage across it is:",
+        options: ["10 V", "12 V", "20 V", "24 V"],
+        correct: 1
+    },
+    {
+        question: "A photon has energy 4.14 eV. Its frequency is approximately (h = 6.626 × 10⁻³⁴ J·s, 1 eV = 1.6 × 10⁻¹⁹ J):",
+        options: ["10¹² Hz", "10¹³ Hz", "10¹⁵ Hz", "10¹⁷ Hz"],
+        correct: 2
+    },
+    {
+        question: "A body of mass 2 kg is dropped from a height of 20 m. Its kinetic energy just before hitting the ground is (g = 10 m/s²):",
+        options: ["200 J", "300 J", "400 J", "500 J"],
+        correct: 2
+    },
+    {
+        question: "An object is placed 60 cm in front of a concave lens of focal length 20 cm. The image distance is:",
+        options: ["-15 cm", "-30 cm", "-20 cm", "15 cm"],
+        correct: 0
+    }
+];
 
-for (let i = 0; i < questions.length; i++) {
-    answers[i] = null;
-    marked[i] = null;
-}
+const chem = [
+    {
+        question: "The hybridisation of the central atom in SF₆ is:",
+        options: ["sp³", "sp³d", "sp³d²", "sp²d"],
+        correct: 2
+    },
+    {
+        question: "Which of the following alkanes has the highest boiling point?",
+        options: ["CH₄", "C₂H₆", "C₃H₈", "n-C₄H₁₀"],
+        correct: 3
+    },
+    {
+        question: "The total number of sigma (σ) bonds in one molecule of benzene (C₆H₆) is:",
+        options: ["6", "9", "12", "18"],
+        correct: 2
+    },
+    {
+        question: "Which of the following is the strongest acid?",
+        options: ["HF", "HCl", "HBr", "HI"],
+        correct: 3
+    },
+    {
+        question: "The IUPAC name of CH₃−CH(OH)−CH₃ is:",
+        options: ["propan-1-ol", "propan-3-ol", "propan-2-ol", "2-methylethanol"],
+        correct: 2
+    },
+    {
+        question: "The oxidation state of Mn in KMnO₄ is:",
+        options: ["+3", "+5", "+6", "+7"],
+        correct: 3
+    }
+];
 
 function sidebar() {
     var nav = document.getElementById("question-nav");
@@ -160,25 +216,66 @@ function submit() {
     alert("Exam submitted!\nYour score is: " + score + " / " + questions.length );
 }
 
-let timerInterval = setInterval(function () {
+function time() {
+    let timerInterval = setInterval(function () {
 
-    var minutes = Math.floor(timeLeft / 60);
-    var seconds = timeLeft % 60;
+        var minutes = Math.floor(timeLeft / 60);
+        var seconds = timeLeft % 60;
 
-    if (seconds < 10) {
-        seconds = "0" + seconds;
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            submit();
+        }
+
+        timeLeft--;
+
+    }, 1000);
+}
+
+function init() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("next-btn").style.visibility = "";
+    document.getElementById("prev-btn").style.visibility = "";
+    document.getElementById("mark-btn").style.visibility = "";
+    document.getElementById("submit-btn").style.visibility = "";
+    document.getElementById("question-nav").style.visibility = "";
+    document.getElementById("time-remaining").style.visibility = "";
+    document.getElementById("timer").style.visibility = "";
+
+    window.questions = [];
+
+    if (document.getElementById("subject").value == "math") {
+        questions = math;
+    } else if (document.getElementById("subject").value == "phy") {
+        questions = phy;
+    } else {
+        questions = chem;
     }
 
-    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+    window.cur = 0;
+    window.answers = [];
+    window.marked = [];
+    window.timeLeft = document.getElementById("time").value*60;
 
-    if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        submit();
+    for (let i = 0; i < questions.length; i++) {
+        answers[i] = null;
+        marked[i] = null;
     }
+    sidebar();
+    load(0);
+    time();
+}
 
-    timeLeft--;
-
-}, 1000);
-
-sidebar();
-load(0);
+document.getElementById("next-btn").style.visibility = "hidden";
+document.getElementById("prev-btn").style.visibility = "hidden";
+document.getElementById("mark-btn").style.visibility = "hidden";
+document.getElementById("submit-btn").style.visibility = "hidden";
+document.getElementById("question-nav").style.visibility = "hidden";
+document.getElementById("time-remaining").style.visibility = "hidden";
+document.getElementById("timer").style.visibility = "hidden";

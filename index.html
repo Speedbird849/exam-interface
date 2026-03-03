@@ -8,12 +8,25 @@
 <body>
 
     <div class="topbar">
-        <h2>Online Exam</h2>
+        <h2>Online Exam Simulation</h2>
         <div id="time-remaining">Time left: </div>
-        <div id="timer">15:00</div>
+        <div id="timer">00:00</div>
     </div>
 
     <div class="container">
+        <div id="popup">
+            <form id="choice" action="#">
+                <h2 id="top">Subject</h2>
+                <select name="subject" id="subject" form="choice">
+                    <option value="math">Mathematics</option>
+                    <option value="phy">Physics</option>
+                    <option value="chem">Chemistry</option>
+                </select>
+                <h2>Time</h2>
+                <input type="number" id="time" placeholder="Enter time in minutes">
+                <button type="button" id="submit" onclick="init()">Start</button>
+            </form>
+        </div>
         <div class="main">
             <h3 id="question"></h3>
             <img id="img">
@@ -29,9 +42,9 @@
 
         <div class="sidebar" id="question-nav"></div>
     </div>  
-
-    
-
     <script src="script.js"></script>
+    <footer>
+
+    </footer>
 </body>
 </html>
