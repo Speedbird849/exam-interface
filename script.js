@@ -48,7 +48,7 @@ const phy = [
         correct: 1
     },
     {
-        question: "Find the acceleration of block mass 𝑚. Assume pulleys are of massless and frictionless.):",
+        question: "Find the acceleration of block mass 𝑚. Assume pulleys are of massless and frictionless.",
         options: ["𝑔/3", "2𝑔/3", "𝑔/2", "None of the above"],
         correct: 1
     },
