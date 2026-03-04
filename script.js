@@ -294,7 +294,7 @@ function init() {
     window.cur = 0;
     window.answers = [];
     window.marked = [];
-    if (document.getElementById("time").value == 0) window.timeLeft = 15*60;
+    if (document.getElementById("time").value <= 0) window.timeLeft = 15*60;
     else window.timeLeft = document.getElementById("time").value*60;
 
     for (let i = 0; i < questions.length; i++) {
