@@ -240,9 +240,7 @@ function submit() {
 }
 
 function restart() {
-    document.getElementById("end-popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("popup").style.display = "";
+    location.reload();
 }
 
 function time() {
