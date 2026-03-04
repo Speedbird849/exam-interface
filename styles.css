@@ -109,6 +109,13 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #ff5252;
+    animation: ani 2s linear infinite;
+}
+
+@keyframes ani {
+    0% { opacity: 0.5 }
+    50% { opacity: 1 }
+    100% { opacity: 0.5 }
 }
 
 .container {
