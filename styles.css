@@ -74,8 +74,8 @@ body {
     font-weight: bold;
     border: none;
     border-radius: 6px;
-    background-color: #6b6be0;
-    color: #ffffff;
+    background-color: #bcbcbc;
+    color: #1e1e1e;
     cursor: pointer;
     transition: background-color 0.2s;
 }
