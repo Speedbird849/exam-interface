@@ -48,9 +48,9 @@ const phy = [
         correct: 1
     },
     {
-        question: "A photon has energy 4.14 eV. Its frequency is approximately (h = 6.626 × 10⁻³⁴ J·s, 1 eV = 1.6 × 10⁻¹⁹ J):",
-        options: ["10¹² Hz", "10¹³ Hz", "10¹⁵ Hz", "10¹⁷ Hz"],
-        correct: 2
+        question: "Find the acceleration of block mass 𝑚. Assume pulleys are of massless and frictionless.):",
+        options: ["𝑔/3", "2𝑔/3", "𝑔/2", "None of the above"],
+        correct: 1
     },
     {
         question: "A body of mass 2 kg is dropped from a height of 20 m. Its kinetic energy just before hitting the ground is (g = 10 m/s²):",
@@ -142,11 +142,12 @@ function load(index) {
     let q = questions[index];
     document.getElementById("question").innerHTML = q.question;
 
-    if (index == 3) {
-        document.getElementById("img").setAttribute("src", "images.png");
+    if (questions === phy && index == 3) {
+        document.getElementById("img").setAttribute("src", "image.png");
         document.getElementById("img-br").innerHTML = "<br><br>";
     } else {
         document.getElementById("img").setAttribute("src", "");
+        document.getElementById("img-br").innerHTML = "";
     }
 
     let op = document.getElementById("options");
@@ -205,19 +206,47 @@ function prev() {
 }
 
 function submit() {
+    clearInterval(window.timerInterval);
     var score = 0;
+    var tbody = document.getElementById("results-body");
+    tbody.innerHTML = "";
 
     for (let i = 0; i < questions.length; i++) {
-        if (answers[i] == questions[i].correct) {
-            score++;
-        }
+        var correct = answers[i] === questions[i].correct;
+        if (correct) score++;
+
+        var row = document.createElement("tr");
+        row.className = correct ? "row-correct" : "row-wrong";
+
+        var yourAns = answers[i] != null
+            ? questions[i].options[answers[i]]
+            : "<span class='td-unanswered'>Not answered</span>";
+        var correctAns = questions[i].options[questions[i].correct];
+
+        row.innerHTML =
+            "<td>" + (i + 1) + "</td>" +
+            "<td class='td-question'>" + questions[i].question + "</td>" +
+            "<td>" + yourAns + "</td>" +
+            "<td>" + correctAns + "</td>" +
+            "<td class='" + (correct ? "result-correct" : "result-wrong") + "'>" +
+            (correct ? "&check;" : "&cross;") + "</td>";
+
+        tbody.appendChild(row);
     }
 
-    alert("Exam submitted!\nYour score is: " + score + " / " + questions.length );
+    document.getElementById("end-score").textContent = score + " / " + questions.length;
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("end-popup").style.display = "flex";
+}
+
+function restart() {
+    document.getElementById("end-popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("popup").style.display = "";
 }
 
 function time() {
-    let timerInterval = setInterval(function () {
+    window.timerInterval = setInterval(function () {
 
         var minutes = Math.floor(timeLeft / 60);
         var seconds = timeLeft % 60;
@@ -261,7 +290,8 @@ function init() {
     window.cur = 0;
     window.answers = [];
     window.marked = [];
-    window.timeLeft = document.getElementById("time").value*60;
+    if (document.getElementById("time").value == 0) window.timeLeft = 15*60;
+    else window.timeLeft = document.getElementById("time").value*60;
 
     for (let i = 0; i < questions.length; i++) {
         answers[i] = null;

@@ -41,7 +41,33 @@
         </div>
 
         <div class="sidebar" id="question-nav"></div>
-    </div>  
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="end-popup">
+        <h2 id="end-popup-title">Exam Complete</h2>
+        <div id="end-score-wrap">
+            <span id="end-score-label">Your Score</span>
+            <div id="end-score"></div>
+        </div>
+        <div id="results-table-wrap">
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th>Your Answer</th>
+                        <th>Correct Answer</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id="results-body"></tbody>
+            </table>
+        </div>
+        <button id="restart-btn" onclick="restart()">Restart</button>
+    </div>
+
     <script src="script.js"></script>
     <footer>
 
