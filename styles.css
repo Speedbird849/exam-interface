@@ -79,7 +79,7 @@ body {
     background-color: #bcbcbc;
     color: #1e1e1e;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: 0.2s;
 }
 
 #popup button:hover,
@@ -95,6 +95,24 @@ body {
     padding: 15px 25px;
     background-color: #1e1e1e;
     border-bottom: 1px solid #2a2a2a;
+}
+
+.qs-links {
+    display: flex;
+    gap: 36px;
+    margin-left: 48px;
+    padding-top: 3px;
+}
+
+.qs-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.qs-links a:hover {
+    color: #e0e0e0;
 }
 
 #time-remaining {

@@ -265,6 +265,12 @@ function time() {
     }, 1000);
 }
 
+function quickstart(subject) {
+    document.getElementById("subject").value = subject;
+    document.getElementById("time").value = 15;
+    init();
+}
+
 function init() {
     document.getElementById("popup").style.display = "none";
     document.getElementById("next-btn").style.visibility = "";
